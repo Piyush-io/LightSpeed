@@ -1,82 +1,101 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
-@import url('https://db.onlinewebfonts.com/c/c1a45b2db15fa7abe4df87429df1f939?family=Moniqa+Med+Cond+Display');
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+@import url("https://db.onlinewebfonts.com/c/c1a45b2db15fa7abe4df87429df1f939?family=Moniqa+Med+Cond+Display");
+
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 :root {
-  --primary: tomato;
-  --fg-100: hsl(220 20% 98%);
-  --fg-200: beige;
+    --primary: tomato;
+    --fg-100: hsl(220 20% 98%);
+    --fg-200: beige;
 }
 
 html,
 body,
 #app {
-  height: 100%;
+    height: 100%;
 }
 
-.typing{
-  background: linear-gradient(-153deg,rgba(10, 10, 10, 0.7),   // Very dark gray, almost black with 80% opacity
-  rgba(0, 5, 5, 0.7)); // Very dark gray, almost black
-  color: #f0f0f0;
-  padding: 25px;
-  border-radius: 14px; // Slightly rounded corners
-  box-shadow:
-    -9px 9px 9px 0 rgba(0, 0, 0, 0.04),
-    -18px 18px 18px 0 rgba(0, 0, 0, 0.08),
-    -37px 37px 37px 0 rgba(0, 0, 0, 0.16),
-    -75px 75px 75px 0 rgba(0, 0, 0, 0.24),
-    -150px 150px 150px 0 rgba(0, 0, 0, 0.48);
-  
-  &::before {
-    content: '';
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+}
+
+.typing {
+    background: linear-gradient(
+        -153deg,
+        rgba(10, 10, 10, 0.7),
+        // Very dark gray, almost black with 80% opacity
+        rgba(0, 5, 5, 0.7)
+    ); // Very dark gray, almost black
+    color: #f0f0f0;
+    padding: 25px;
+    border-radius: 14px; // Slightly rounded corners
+    box-shadow:
+        -9px 9px 9px 0 rgba(0, 0, 0, 0.04),
+        -18px 18px 18px 0 rgba(0, 0, 0, 0.08),
+        -37px 37px 37px 0 rgba(0, 0, 0, 0.16),
+        -75px 75px 75px 0 rgba(0, 0, 0, 0.24),
+        -150px 150px 150px 0 rgba(0, 0, 0, 0.48);
+    position: relative;
+    flex: 1;
+}
+
+.typing::before {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     background: linear-gradient(
-      to right,
-      rgba(150, 150, 150, 0.1) 0%,
-      rgba(150, 150, 150, 0) 20%,
-      rgba(150, 150, 150, 0) 80%,
-      rgba(150, 150, 150, 0.1) 100%
+        to right,
+        rgba(150, 150, 150, 0.1) 0%,
+        rgba(150, 150, 150, 0) 20%,
+        rgba(150, 150, 150, 0) 80%,
+        rgba(150, 150, 150, 0.1) 100%
     );
     pointer-events: none;
-  }
+}
+
+.options {
+    display: grid;
+    justify-content: flex-end;
+    padding-left: 25px; /* Add space between typing and options */
 }
 
 body {
-  font-family: 'Jetbrains mono', monospace;
-  color: var(--fg-100);
-  background: linear-gradient(
-  to bottom right,
-  #000808,
-  #000e0e 25%,
-  #001010 50%,
-  #000c0c 75%,
-  #000505
-);
-overflow: hidden;
+    font-family: "Jetbrains mono", monospace;
+    color: var(--fg-100);
+    background: linear-gradient(
+        to bottom right,
+        #000808,
+        #000e0e 25%,
+        #001010 50%,
+        #000c0c 75%,
+        #000505
+    );
 }
 
 button {
-  font: inherit;
-  color: inherit;
-  background: none;
-  border: none;
-  opacity: 0.4;
-  transition: all 0.3s ease;
-  padding: 20px;
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+    padding: 20px;
+}
 
-  &:hover {
+button:hover {
     cursor: pointer;
     opacity: 1;
-  }
 }
