@@ -1,82 +1,198 @@
-@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
-@import url('https://db.onlinewebfonts.com/c/c1a45b2db15fa7abe4df87429df1f939?family=Moniqa+Med+Cond+Display');
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+@import url("https://db.onlinewebfonts.com/c/c1a45b2db15fa7abe4df87429df1f939?family=Moniqa+Med+Cond+Display");
+@import url("https://fonts.cdnfonts.com/css/cascadia-code");
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 :root {
-  --primary: tomato;
-  --fg-100: hsl(220 20% 98%);
-  --fg-200: beige;
+    --primary: tomato;
+    --fg-100: hsl(220 20% 98%);
+    --fg-200: beige;
+    --bounciness: 15;
 }
 
 html,
 body,
 #app {
-  height: 100%;
-}
-
-.typing{
-  background: linear-gradient(-153deg,rgba(10, 10, 10, 0.7),   // Very dark gray, almost black with 80% opacity
-  rgba(0, 5, 5, 0.7)); // Very dark gray, almost black
-  color: #f0f0f0;
-  padding: 25px;
-  border-radius: 14px; // Slightly rounded corners
-  box-shadow:
-    -9px 9px 9px 0 rgba(0, 0, 0, 0.04),
-    -18px 18px 18px 0 rgba(0, 0, 0, 0.08),
-    -37px 37px 37px 0 rgba(0, 0, 0, 0.16),
-    -75px 75px 75px 0 rgba(0, 0, 0, 0.24),
-    -150px 150px 150px 0 rgba(0, 0, 0, 0.48);
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-      to right,
-      rgba(150, 150, 150, 0.1) 0%,
-      rgba(150, 150, 150, 0) 20%,
-      rgba(150, 150, 150, 0) 80%,
-      rgba(150, 150, 150, 0.1) 100%
-    );
-    pointer-events: none;
-  }
+    height: 100%;
 }
 
 body {
-  font-family: 'Jetbrains mono', monospace;
-  color: var(--fg-100);
-  background: linear-gradient(
-  to bottom right,
-  #000808,
-  #000e0e 25%,
-  #001010 50%,
-  #000c0c 75%,
-  #000505
-);
-overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    font-family: monospace, system-ui;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+}
+
+.typing {
+    
+}
+
+body {
+    font-family: "Cascadia Code", sans-serif;
+    color: var(--fg-100);
+    background: linear-gradient(
+        to bottom right,
+        #000808,
+        #000e0e 25%,
+        #001010 50%,
+        #000c0c 75%,
+        #000505
+    );
+    // overflow: hidden;
 }
 
 button {
-  font: inherit;
-  color: inherit;
-  background: none;
-  border: none;
-  opacity: 0.4;
-  transition: all 0.3s ease;
-  padding: 20px;
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+    padding: 20px;
 
-  &:hover {
-    cursor: pointer;
-    opacity: 1;
-  }
+    &:hover {
+        cursor: pointer;
+        opacity: 1;
+    }
+}
+
+.radio-group {
+    margin: 5%;
+    margin-top: -10%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    position: relative;
+    color: beige;
+    > input[type="radio"] {
+        display: none;
+    }
+
+    > label {
+        padding: 0.3rem 1rem;
+        display: flex;
+        justify-content: center;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.selection-indicator-wrapper {
+    --transition-duration: 0.3s;
+    --morph-factor: 0;
+    width: 33.33%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+    mix-blend-mode: difference;
+    transition-duration: var(--transition-duration);
+    transition-timing-function: cubic-bezier(
+        0.25,
+        calc(var(--bounciness) / 10),
+        0.5,
+        1
+    );
+
+    left: 0;
+    top: 50%;
+    translate: 0 -50%;
+    pointer-events: none;
+    transform: translateX(calc(var(--morph-factor) * 10%));
+    scale: calc(1 + var(--morph-factor) * var(--morph-factor) * 0.05)
+        calc(1 - var(--morph-factor) * var(--morph-factor) * 0.1);
+
+    > span {
+        background-color: beige;
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: 100px;
+        transition-duration: calc(1.25 * var(--transition-duration));
+        transition-timing-function: cubic-bezier(
+            0.95,
+            calc(0.5 * var(--bounciness)),
+            0,
+            1
+        );
+    }
+}
+
+.radio-group
+    input[type="radio"]:nth-of-type(2):checked
+    ~ .selection-indicator-wrapper {
+    left: 33.33%;
+}
+
+.radio-group
+    input[type="radio"]:nth-of-type(3):checked
+    ~ .selection-indicator-wrapper {
+    left: 66.66%;
+}
+
+.radio-group label:hover,
+.radio-group label:focus-visible {
+    ~ input:checked ~ .selection-indicator-wrapper {
+        --morph-factor: -1;
+    }
+    &:active ~ input:checked ~ .selection-indicator-wrapper {
+        --morph-factor: 1;
+    }
+}
+
+.radio-group label:hover,
+.radio-group label:focus-visible {
+    ~ input ~ input:checked ~ .selection-indicator-wrapper {
+        --morph-factor: -2;
+    }
+    &:active ~ input ~ input:checked ~ .selection-indicator-wrapper {
+        --morph-factor: 2;
+    }
+}
+
+.radio-group input:checked ~ input + label:hover,
+.radio-group input:checked ~ input + label:focus-visible {
+    ~ .selection-indicator-wrapper {
+        --morph-factor: 1;
+    }
+    &:active ~ .selection-indicator-wrapper {
+        --morph-factor: -1;
+    }
+}
+
+.radio-group input:checked ~ input ~ input + label:hover,
+.radio-group input:checked ~ input ~ input + label:focus-visible {
+    ~ .selection-indicator-wrapper {
+        --morph-factor: 2;
+    }
+    &:active ~ .selection-indicator-wrapper {
+        --morph-factor: -2;
+    }
+}
+
+.radio-group label:active ~ .selection-indicator-wrapper {
+    --transition-duration: 0.1s;
+    > span {
+        scale: calc(1 + var(--morph-factor) * var(--morph-factor) * 0.05)
+            calc(1 - var(--morph-factor) * var(--morph-factor) * 0.1);
+        transition-timing-function: unset;
+    }
+}
+
+.link {
+    position: fixed;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    color: #888;
 }

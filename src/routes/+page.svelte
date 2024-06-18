@@ -242,7 +242,24 @@
 
 <style lang="scss">
   .game {
-    position: relative;
+    height: 280px;
+    background: linear-gradient(
+      -153deg,
+      rgba(10, 10, 10, 0.7),
+      // Very dark gray, almost black with 80% opacity
+      rgba(0, 5, 5, 0.7)
+    ); 
+    color: #f0f0f0;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow:
+      -9px 9px 9px 0 rgba(0, 0, 0, 0.04),
+      -18px 18px 18px 0 rgba(0, 0, 0, 0.08),
+      -37px 37px 37px 0 rgba(0, 0, 0, 0.16),
+      -75px 75px 75px 0 rgba(0, 0, 0, 0.24),
+      -150px 150px 150px 0 rgba(0, 0, 0, 0.48);
+
+    margin-top: -15%;
     .time {
       position: absolute;
       top: -48px;
